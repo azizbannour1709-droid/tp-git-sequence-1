@@ -14,3 +14,7 @@ g++ -o bienvenue bienvenue.o fonction-bienvenue.o
 $ ./bienvenue
 Bienvenue le monde !
 ```
+## Modifications
+
+- Ajout d'un paramètre `message` avec valeur par défaut dans la fonction `afficherBienvenue()`
+- Le message peut maintenant être personnalisé
