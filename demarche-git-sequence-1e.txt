@@ -1,0 +1,175 @@
+**Copiez ce contenu :**
+```
+DÉMARCHE GIT - SÉQUENCE 1e (Visual Studio Code)
+================================================
+
+QUESTION 1 : INSTALLATION VISUAL STUDIO CODE
+---------------------------------------------
+VSCode peut être installé avec :
+$ sudo snap install code --classic
+
+Alternative utilisée : nano (éditeur en ligne de commande)
+
+
+QUESTION 2 : AJOUT PARAMÈTRE nbAffichage (v1.3)
+-----------------------------------------------
+Objectif : Ajouter un paramètre pour répéter l'affichage du message
+
+Fichiers modifiés :
+1. fonction-bienvenue.h
+   - Ajout du paramètre : int nbAffichage=1
+   - Signature : void afficherBienvenue(std::string message="Bienvenue le monde !", int nbAffichage=1);
+
+2. fonction-bienvenue.cpp
+   - Ajout d'une boucle for pour répéter l'affichage :
+     for(int i = 0; i < nbAffichage; i++)
+     {
+         std::cout << message << std::endl;
+     }
+
+3. README.md
+   - Documentation du nouveau paramètre nbAffichage
+
+Commandes exécutées :
+$ nano fonction-bienvenue.h
+$ nano fonction-bienvenue.cpp
+$ nano README.md
+$ make rebuild
+$ ./bienvenue
+Bienvenue le monde !
+$ git add .
+$ git commit -m "Ajout paramètre nbAffichage"
+$ git push
+
+
+QUESTION 3 : TAG ET ARCHIVE v1.3
+---------------------------------
+Création du tag pour la version 1.3 :
+$ git tag -a v1.3 -m "Version 1.3"
+$ git push --tags
+
+Création de l'archive ZIP :
+$ git archive --format=zip --prefix=tp-git-sequence-1-bannour/ v1.3 -o tp-git-sequence-1-bannour-v1.3.zip
+
+Résultat : archive tp-git-sequence-1-bannour-v1.3.zip créée avec succès
+
+
+QUESTION 4 : ARGUMENTS LIGNE DE COMMANDE (v2.0)
+------------------------------------------------
+Objectif : Permettre de passer le message et le nombre d'affichages en arguments
+
+Fichiers modifiés :
+1. bienvenue.cpp
+   - Ajout des paramètres : int argc, char* argv[]
+   - argc : nombre d'arguments (inclut le nom du programme)
+   - argv[1] : message optionnel (si fourni)
+   - argv[2] : nombre d'affichages optionnel (si fourni)
+   
+   Logique implémentée :
+   - Par défaut : message="Bienvenue le monde !", nbAffichage=1
+   - Si argc >= 2 : message = argv[1]
+   - Si argc >= 3 : conversion de argv[2] en int avec stringstream
+   
+   Code ajouté :
+   #include <sstream>
+   std::stringstream ss(argv[2]);
+   ss >> nbAffichage;
+
+2. README.md
+   - Ajout de la section "Exemples d'utilisation"
+   - Documentation des différents cas d'usage
+
+Tests effectués :
+$ make rebuild
+$ ./bienvenue
+Bienvenue le monde !
+
+$ ./bienvenue Bienvenue
+Bienvenue
+
+$ ./bienvenue Bienvenue 2
+Bienvenue
+Bienvenue
+
+$ ./bienvenue "Bonjour le monde" 3
+Bonjour le monde
+Bonjour le monde
+Bonjour le monde
+
+Validation :
+$ git add .
+$ git commit -m "Ajout arguments ligne de commande"
+$ git push
+
+
+QUESTION 5 : TAG ET ARCHIVE v2.0
+---------------------------------
+Création du tag pour la version 2.0 :
+$ git tag -a v2.0 -m "Version 2.0"
+$ git push --tags
+
+Création de l'archive TAR.GZ :
+$ git archive --format=tar.gz --prefix=tp-git-sequence-1-bannour/ v2.0 -o tp-git-sequence-1-bannour-v2.0.tar.gz
+
+Résultat : archive tp-git-sequence-1-bannour-v2.0.tar.gz créée avec succès
+
+
+QUESTION 6 : DÉMARCHE GIT
+--------------------------
+Documentation de la démarche (ce fichier)
+$ nano demarche-git-sequence-1e.txt
+$ git add demarche-git-sequence-1e.txt
+$ git commit -m "Ajout documentation démarche Git séquence 1e"
+$ git push
+
+
+RÉSUMÉ DES COMMANDES GIT UTILISÉES
+-----------------------------------
+Configuration et visualisation :
+- git config --global core.editor nano : configurer l'éditeur
+- git status : voir l'état des fichiers
+- git log --oneline --graph --all --decorate : voir l'historique
+- git tag : lister les tags
+
+Gestion des modifications :
+- git add . : indexer tous les fichiers modifiés
+- git add <fichier> : indexer un fichier spécifique
+- git commit -m "message" : valider les modifications avec un message
+- git push : publier les commits sur le dépôt distant
+
+Gestion des tags :
+- git tag -a vX.X -m "Version X.X" : créer un tag annoté
+- git push --tags : publier les tags sur le dépôt distant
+- git tag : lister les tags locaux
+
+Archives :
+- git archive --format=zip : créer une archive ZIP
+- git archive --format=tar.gz : créer une archive TAR.GZ
+- --prefix=nom/ : ajouter un préfixe aux fichiers dans l'archive
+- -o fichier : spécifier le nom du fichier de sortie
+
+
+ÉVOLUTION DU PROJET
+--------------------
+v1.0 : Version initiale avec fonction basique
+v1.1 : Ajout de la fonction dans un module séparé
+v1.2 : Documentation et paramètre message avec valeur par défaut
+v1.3 : Ajout du paramètre nbAffichage pour répéter l'affichage
+v2.0 : Ajout des arguments en ligne de commande (argc/argv)
+
+
+FICHIERS LIVRABLES
+------------------
+1. tp-git-sequence-1-bannour.zip (v1.0)
+2. tp-git-sequence-1-bannour-v1.3.zip (v1.3)
+3. tp-git-sequence-1-bannour-v2.0.tar.gz (v2.0)
+4. Compte-rendu complet avec toutes les commandes et résultats
+
+
+OUTILS UTILISÉS
+---------------
+- Éditeur : nano (ligne de commande)
+- Compilateur : g++ avec options -Wall -std=c++11
+- Build : make avec Makefile
+- Versioning : Git + GitHub
+- Système : Ubuntu Linux
