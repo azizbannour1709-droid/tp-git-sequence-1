@@ -18,3 +18,4 @@ Bienvenue le monde !
 
 - Ajout d'un paramètre `message` avec valeur par défaut dans la fonction `afficherBienvenue()`
 - Le message peut maintenant être personnalisé
+- Ajout d'un paramètre `nbAffichage` (par défaut 1) pour répéter l'affichage du message
