@@ -19,3 +19,22 @@ Bienvenue le monde !
 - Ajout d'un paramètre `message` avec valeur par défaut dans la fonction `afficherBienvenue()`
 - Le message peut maintenant être personnalisé
 - Ajout d'un paramètre `nbAffichage` (par défaut 1) pour répéter l'affichage du message
+## Exemples d'utilisation
+```sh
+$ make rebuild
+rm -f *.o
+g++ -c -Wall -std=c++11 bienvenue.cpp
+g++ -c -Wall -std=c++11 fonction-bienvenue.cpp
+g++ -o bienvenue bienvenue.o fonction-bienvenue.o
+$ ./bienvenue
+Bienvenue le monde !
+$ ./bienvenue Bienvenue
+Bienvenue
+$ ./bienvenue Bienvenue 2
+Bienvenue
+Bienvenue
+$ ./bienvenue "Bonjour le monde" 3
+Bonjour le monde
+Bonjour le monde
+Bonjour le monde
+```
